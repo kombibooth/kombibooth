@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
-import PhotoTake from '../components/photo/take';
-import PhotoItem from '../components/photo/item';
+import Logo from '../components/layout/logo';
 
 export default class Home extends Component {
   render () {
     return (
       <div>
-        <PhotoItem />
-        <PhotoTake />
+        <Logo type="horizontal" />
+        <Logo type="vertical" />
       </div>
     );
   }
