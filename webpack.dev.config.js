@@ -2,6 +2,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+require('babel-core/polyfill');
 
 
 module.exports = {
@@ -40,6 +41,10 @@ module.exports = {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass'],
+      },
+      {
+        test: /\.png$/,
+        loader: 'url?mimetype=image/png',
       },
     ],
   },
