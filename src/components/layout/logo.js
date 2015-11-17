@@ -11,7 +11,7 @@ export default class Logo extends Component {
 
   render () {
     const { type } = this.props;
-    console.log(type);
+
     if (type && type === 'vertical') {
       return (
         <img src={ vertical } />
