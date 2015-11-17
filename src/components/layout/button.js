@@ -6,11 +6,16 @@ export default class Button extends Component {
 
   static propTypes = {
     text: PropTypes.string.required,
+    onClick: PropTypes.func.isRequired,
+  }
+
+  handleClick () {
+    this.props.onClick();
   }
 
   render () {
     return (
-      <a href="#" className="btn">
+      <a onClick={ ::this.handleClick } className="btn">
         { this.props.text }
       </a>
     );
