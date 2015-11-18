@@ -32,7 +32,7 @@ export default class PhotoWebcam extends Component {
           seconds={ 5 }
           onCountDownFinish={ ::this.handleOnCountDownFinish }
           ref="countdown" />
-        <Webcam width="1220" height="600" ref="webcam" />
+        <Webcam ref="webcam" />
       </div>
     );
   }
