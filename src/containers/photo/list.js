@@ -8,8 +8,8 @@ const PhotoList = (props) => {
     <div className="photo-list">
       <ul>
         {
-          props.photos.map(photo =>
-            <li>
+          props.photos.map((photo, index) =>
+            <li key={index}>
               <PhotoImageRounded image={ photo } size="small" />
             </li>
           )
