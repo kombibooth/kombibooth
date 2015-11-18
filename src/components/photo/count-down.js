@@ -12,34 +12,57 @@ export default class CountDown extends Component {
 
     this.state = {
       seconds: 0,
+      hide: true,
     }
   }
 
-  componentDidMount () {
-    const countDown = setInterval(() => {
-      this.setState({
-        seconds: this.state.seconds + 1
-      });
+  reset () {
+    this.countDown();
+  }
 
-      if (this.state.seconds === this.props.seconds) {
+  componentDidMount () {
+    this.setState({
+      seconds: this.props.seconds,
+    });
+
+    this.countDown();
+  }
+
+  countDown () {
+    this.setState({
+      hide: false,
+    });
+
+    const countDown = setInterval(() => {
+      if (this.state.seconds === 0) {
         if (this.props.onCountDownFinish) {
           this.props.onCountDownFinish();
         }
 
+        this.setState({
+          seconds: this.props.seconds,
+          hide: true,
+        });
+
         clearInterval(countDown);
+
         return;
       }
 
       if (this.props.onCountDownTickTack) {
         this.props.onCountDownTickTack(this.state.seconds);
       }
+
+      this.setState({
+        seconds: this.state.seconds - 1
+      });
     }, 1000);
   }
 
   render () {
     return (
       <div className='countdown'>
-        { this.state.seconds }
+        { !this.state.hide && this.state.seconds }
       </div>
     )
   }
