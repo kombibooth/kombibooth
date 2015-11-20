@@ -16,6 +16,10 @@ import './take.scss';
 
 class PhotoTake extends Component {
 
+  static contextTypes = {
+    history: PropTypes.object.isRequired,
+  };
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     photo: PropTypes.object.isRequired,
@@ -54,17 +58,19 @@ class PhotoTake extends Component {
 
     const { shouldStopCapture } = props.photo;
 
-    const countDownTimeout = setTimeout(() => {
+    setTimeout(() => {
+      if (shouldStopCapture) {
+        this.context.history.pushState(null, '/photos/viewer');
+        return;
+      }
+
       this.setState({
         isWebcamActive: true
       });
 
       this.refs.countdown.reset();
-    }, COUNT_DOWN_RESTART_AFTER);
 
-    if (shouldStopCapture) {
-      clearTimeout(countDownTimeout);
-    }
+    }, COUNT_DOWN_RESTART_AFTER);
   }
 
   render () {
