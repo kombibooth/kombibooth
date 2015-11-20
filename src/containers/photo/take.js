@@ -21,6 +21,13 @@ class PhotoTake extends Component {
     photo: PropTypes.object.isRequired,
   }
 
+  constructor() {
+    super();
+    this.state = {
+      isWebcamActive: true
+    };
+  }
+
   handleOnCountDownFinish (photo) {
     const { photos } = this.props.photo;
 
@@ -41,9 +48,17 @@ class PhotoTake extends Component {
   }
 
   componentWillReceiveProps (props) {
+    this.setState({
+      isWebcamActive: false
+    });
+
     const { shouldStopCapture } = props.photo;
 
     const countDownTimeout = setTimeout(() => {
+      this.setState({
+        isWebcamActive: true
+      });
+
       this.refs.countdown.reset();
     }, COUNT_DOWN_RESTART_AFTER);
 
@@ -54,6 +69,15 @@ class PhotoTake extends Component {
 
   render () {
     const { photos } = this.props.photo;
+    const lastPhoto = photos[photos.length - 1];
+
+    let webcamClassName;
+    let largePhoto;
+
+    if (!this.state.isWebcamActive) {
+      webcamClassName = 'display-none';
+      largePhoto = <PhotoImageRounded image={ lastPhoto } size="large" />;
+    }
 
     return (
       <div className="photo-take">
@@ -65,7 +89,8 @@ class PhotoTake extends Component {
             seconds={ COUNT_DOWN_SECONDS }
             onCountDownFinish={ ::this.handleOnCountDownFinish }
             ref="countdown" />
-          <Webcam ref="webcam" />
+          <Webcam ref="webcam" className={ webcamClassName } />
+          { largePhoto }
         </div>
         <div className="photo-list">
           <ul>
