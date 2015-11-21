@@ -14,7 +14,8 @@
   },
   "scripts": {
     "webpack": "webpack-dev-server --config ./webpack.dev.config.js -w",
-    "electron": "electron src/electron/index.js"
+    "electron": "electron src/electron/index.js",
+    "lint": "eslint src/"
   },
   "license": "MIT",
   "devDependencies": {
