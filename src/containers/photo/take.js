@@ -60,7 +60,7 @@ class PhotoTake extends Component {
 
     setTimeout(() => {
       if (shouldStopCapture) {
-        this.context.history.pushState(null, '/photos/viewer');
+        this.context.history.pushState(null, '/photos/format-chooser');
         return;
       }
 
