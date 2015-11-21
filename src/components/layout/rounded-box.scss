@@ -5,6 +5,7 @@
   padding: 60px;
 
   .rounded-box-content {
+    position: relative;
     border-radius: 20px;
     background-color: #FFF;
     display: flex;
@@ -12,5 +13,10 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
+    border: 6px solid #F48B8B;
+    border-bottom: 0;
+    border-right: 0;
+    position: relative;
+    box-shadow: 6px 6px 0px 0px #CE3323;
   }
 }
