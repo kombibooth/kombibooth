@@ -5,7 +5,7 @@ import './button.scss';
 export default class Button extends Component {
 
   static propTypes = {
-    text: PropTypes.string.required,
+    text: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
   }
 
