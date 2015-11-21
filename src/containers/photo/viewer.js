@@ -28,14 +28,14 @@ class PhotoViwer extends Component {
           </ul>
         </div>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps (state) {
   return {
     photo: state.photo,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(PhotoViwer);

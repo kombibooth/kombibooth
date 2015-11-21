@@ -16,23 +16,44 @@ import './take.scss';
 
 class PhotoTake extends Component {
 
-  static contextTypes = {
-    history: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     photo: PropTypes.object.isRequired,
   }
 
-  constructor() {
+  static contextTypes = {
+    history: PropTypes.object.isRequired,
+  };
+
+  constructor () {
     super();
     this.state = {
-      isWebcamActive: true
+      isWebcamActive: true,
     };
   }
 
-  handleOnCountDownFinish (photo) {
+  componentWillReceiveProps (props) {
+    this.setState({
+      isWebcamActive: false,
+    });
+
+    const { shouldStopCapture } = props.photo;
+
+    setTimeout(() => {
+      if (shouldStopCapture) {
+        this.context.history.pushState(null, '/photos/format-chooser');
+        return;
+      }
+
+      this.setState({
+        isWebcamActive: true,
+      });
+
+      this.refs.countdown.reset();
+    }, COUNT_DOWN_RESTART_AFTER);
+  }
+
+  handleOnCountDownFinish () {
     const { photos } = this.props.photo;
 
     if (photos.length + 1 === MAX_PHOTOS_CAPTURED) {
@@ -49,28 +70,6 @@ class PhotoTake extends Component {
         this.refs.webcam.getScreenshot()
       )
     );
-  }
-
-  componentWillReceiveProps (props) {
-    this.setState({
-      isWebcamActive: false
-    });
-
-    const { shouldStopCapture } = props.photo;
-
-    setTimeout(() => {
-      if (shouldStopCapture) {
-        this.context.history.pushState(null, '/photos/format-chooser');
-        return;
-      }
-
-      this.setState({
-        isWebcamActive: true
-      });
-
-      this.refs.countdown.reset();
-
-    }, COUNT_DOWN_RESTART_AFTER);
   }
 
   render () {

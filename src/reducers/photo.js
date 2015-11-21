@@ -21,7 +21,7 @@ export default function photo (state = INITIAL_STATE, action) {
       ...state,
       photos: state.photos.concat([action.photo]),
       shouldStopCapture: true,
-    }
+    };
   default:
     return state;
   }

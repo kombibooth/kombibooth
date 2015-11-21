@@ -12,8 +12,9 @@ export default class PhotoImageRounded extends Component {
 
   render () {
     const imageClassName = classNames('photo-image-rounded', this.props.size);
+
     return (
       <img src={ this.props.image } className={ imageClassName } />
-    )
+    );
   }
 }

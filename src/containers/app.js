@@ -7,7 +7,7 @@ import './app.scss';
 export default class App extends Component {
 
   static propTypes = {
-    session: PropTypes.any,
+    children: PropTypes.any,
   };
 
   render () {
@@ -16,6 +16,6 @@ export default class App extends Component {
         { this.props.children }
         <DevTools />
       </div>
-    )
+    );
   }
 }

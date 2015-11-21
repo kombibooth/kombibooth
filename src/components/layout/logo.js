@@ -20,7 +20,7 @@ export default class Logo extends Component {
 
     return (
       <img src={ horizontal } />
-    )
+    );
   }
 
 }

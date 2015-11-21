@@ -13,18 +13,20 @@ export default class CountDown extends Component {
     this.state = {
       seconds: 0,
       hide: true,
-    }
+    };
   }
 
-  reset () {
-    this.countDown();
-  }
-
-  componentDidMount () {
+  componentWillMount () {
     this.setState({
       seconds: this.props.seconds,
     });
+  }
 
+  componentDidMount () {
+    this.countDown();
+  }
+
+  reset () {
     this.countDown();
   }
 
@@ -54,16 +56,16 @@ export default class CountDown extends Component {
       }
 
       this.setState({
-        seconds: this.state.seconds - 1
+        seconds: this.state.seconds - 1,
       });
     }, 1000);
   }
 
   render () {
     return (
-      <div className='countdown'>
+      <div className="countdown">
         { !this.state.hide && this.state.seconds }
       </div>
-    )
+    );
   }
 }
