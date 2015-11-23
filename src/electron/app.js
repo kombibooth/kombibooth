@@ -34,10 +34,20 @@ function createMainWindow () {
   win.openDevTools();
 
   win.on('closed', onClosed);
+  win.on('enter-full-screen', onEnterFullScreen);
+  win.on('leave-full-screen', onLeaveFullScreen);
 
   return win;
 }
 
 function onClosed () {
   mainWindow = null;
+}
+
+function onEnterFullScreen () {
+  this.setMenuBarVisibility(false);
+}
+
+function onLeaveFullScreen () {
+  this.setMenuBarVisibility(true);
 }
