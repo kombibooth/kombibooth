@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-class FormatChooser extends Component {
+class LayoutChooser extends Component {
   static propTypes = {
     photo: PropTypes.object.isRequired,
   };
@@ -9,7 +9,7 @@ class FormatChooser extends Component {
   render () {
     return (
       <div>
-        <h1>Format Chooser</h1>
+        <h1>Layout Chooser</h1>
       </div>
     );
   }
@@ -21,4 +21,4 @@ function mapStateToProps (state) {
   };
 }
 
-export default connect(mapStateToProps)(FormatChooser);
+export default connect(mapStateToProps)(LayoutChooser);
