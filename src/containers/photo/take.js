@@ -9,7 +9,7 @@ import CountDown from '../../components/photo/count-down';
 import { photoCaptured, lastPhotoCaptured } from '../../actions/photo';
 
 const COUNT_DOWN_SECONDS = 5;
-const MAX_PHOTOS_CAPTURED = 4;
+const MAX_PHOTOS_CAPTURED = 3;
 const COUNT_DOWN_RESTART_AFTER = 5000;
 
 import './take.scss';
