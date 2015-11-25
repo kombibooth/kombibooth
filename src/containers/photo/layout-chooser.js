@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import PhotoBooth from '../../components/layout/photo-booth';
+
 class LayoutChooser extends Component {
   static propTypes = {
     photo: PropTypes.object.isRequired,
@@ -8,9 +10,9 @@ class LayoutChooser extends Component {
 
   render () {
     return (
-      <div>
+      <PhotoBooth>
         <h1>Layout Chooser</h1>
-      </div>
+      </PhotoBooth>
     );
   }
 }

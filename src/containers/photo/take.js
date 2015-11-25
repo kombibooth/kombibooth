@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Webcam from 'react-webcam';
 
+import PhotoBooth from '../../components/layout/photo-booth';
 import Logo from '../../components/layout/logo';
 import PhotoImageRounded from '../../components/photo/image/rounded';
 import CountDown from '../../components/photo/count-down';
@@ -85,32 +86,34 @@ class PhotoTake extends Component {
     }
 
     return (
-      <div className="photo-take">
-        <div className="logo">
-          <Logo type="horizontal" />
+      <PhotoBooth>
+        <div className="photo-take">
+          <div className="logo">
+            <Logo type="horizontal" />
+          </div>
+          <div className="photo-webcam">
+            <CountDown
+              seconds={ COUNT_DOWN_SECONDS }
+              onCountDownFinish={ ::this.handleOnCountDownFinish }
+              ref="countdown" />
+            <Webcam ref="webcam" className={ webcamClassName } />
+            { largePhoto }
+          </div>
+          <div className="photo-list">
+            <ul>
+              {
+                photos.map((photo, index) =>
+                  <li key={index}>
+                    <PhotoImageRounded
+                      image={ photo }
+                      size="small" />
+                  </li>
+                )
+              }
+            </ul>
+          </div>
         </div>
-        <div className="photo-webcam">
-          <CountDown
-            seconds={ COUNT_DOWN_SECONDS }
-            onCountDownFinish={ ::this.handleOnCountDownFinish }
-            ref="countdown" />
-          <Webcam ref="webcam" className={ webcamClassName } />
-          { largePhoto }
-        </div>
-        <div className="photo-list">
-          <ul>
-            {
-              photos.map((photo, index) =>
-                <li key={index}>
-                  <PhotoImageRounded
-                    image={ photo }
-                    size="small" />
-                </li>
-              )
-            }
-          </ul>
-        </div>
-      </div>
+      </PhotoBooth>
     );
   }
 }
