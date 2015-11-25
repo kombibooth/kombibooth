@@ -9,7 +9,7 @@ module.exports = {
   debug: true,
   entry: [
     'babel-polyfill',
-    'webpack/hot/dev-server',
+    'webpack/hot/dev-server?http://localhost:8080',
     './src/index.js',
   ],
   output: {
@@ -18,7 +18,6 @@ module.exports = {
     publicPath: '/dist/',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify('development'),

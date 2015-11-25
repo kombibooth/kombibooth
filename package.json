@@ -13,7 +13,7 @@
     "test": "test"
   },
   "scripts": {
-    "webpack": "webpack-dev-server --config ./webpack.dev.config.js -w",
+    "webpack": "webpack-dev-server --inline --hot --config ./webpack.dev.config.js -w",
     "electron": "electron src/electron/index.js",
     "lint": "eslint src/"
   },
