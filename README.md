@@ -15,7 +15,10 @@ The ideia is to create one and put inside my 1973 VW Bus.
 5. React is cool
 6. Redux is cool
 7. Manipulate image is cool
-8. All points are cool
+10. Raspberry Pi is cool
+11. Arduino is cool
+12. DIY is cool
+13. All points are cool
 
 ... to be continued
 
