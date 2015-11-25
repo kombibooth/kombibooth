@@ -96,7 +96,7 @@ class PhotoTake extends Component {
               seconds={ COUNT_DOWN_SECONDS }
               onCountDownFinish={ ::this.handleOnCountDownFinish }
               ref="countdown" />
-            <Webcam ref="webcam" className={ webcamClassName } />
+            <Webcam ref="webcam" audio={ false } className={ webcamClassName } />
             { largePhoto }
           </div>
           <div className="photo-list">
