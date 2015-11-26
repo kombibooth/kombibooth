@@ -1,23 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 
 import './button.scss';
 
-export default class Button extends Component {
+const Button = ({ text, onClick }) => (
+  <a onClick={onClick} className="btn">
+    { text }
+  </a>
+);
 
-  static propTypes = {
-    text: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-  }
-
-  handleClick () {
-    this.props.onClick();
-  }
-
-  render () {
-    return (
-      <a onClick={ ::this.handleClick } className="btn">
-        { this.props.text }
-      </a>
-    );
-  }
-}
+export default Button;

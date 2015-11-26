@@ -1,13 +1,13 @@
-import { Component, PropTypes } from 'react';
+import React from 'react';
 
 import './photo-booth.scss';
 
-export default class PhotoBooth extends Component {
-  static propTypes = {
-    children: PropTypes.any.isRequired,
-  };
+const PhotoBooth = ({ children }) => {
+  return (
+    <div className="photo-booth">
+      { children }
+    </div>
+  );
+};
 
-  render () {
-    return this.props.children;
-  }
-}
+export default PhotoBooth;
