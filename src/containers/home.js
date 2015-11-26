@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import PhotoBooth from '../components/layout/photo-booth';
 import Logo from '../components/layout/logo';
 import RoundedBox from '../components/layout/rounded-box';
 import Button from '../components/layout/button';
@@ -19,16 +18,13 @@ export default class Home extends Component {
 
   render () {
     return (
-      <PhotoBooth>
-        <RoundedBox>
-          <Logo type="vertical" />
-          <div className="button-tap-to-start">
-            <Button
-              text="Tap to start"
-              onClick={ ::this.handleTapToStartClick } />
-          </div>
-        </RoundedBox>
-      </PhotoBooth>
+      <RoundedBox>
+        <Logo type="vertical" />
+        <Button
+          text="Tap to start"
+          onClick={ ::this.handleTapToStartClick }
+          className="button-tap-to-start" />
+      </RoundedBox>
     );
   }
 }
