@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+import PhotoBooth from './components/layout/photo-booth';
+
 import {
-  App,
   HomePage,
   PhotoTakePage,
   PhotoLayoutChooserPage,
@@ -11,7 +12,7 @@ import {
 
 
 export default (
-  <Route path="/" component={ App }>
+  <Route path="/" component={ PhotoBooth }>
     <IndexRoute component={ HomePage } />
     <Route path="/photos/take" component={ PhotoTakePage } />
     <Route path="/photos/format-chooser" component={ PhotoLayoutChooserPage } />
