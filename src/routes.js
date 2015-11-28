@@ -10,6 +10,7 @@ import {
   PhotoTakePage,
   PhotoLayoutChooserPage,
   PhotoViewerPage,
+  SettingsPage,
 } from './containers';
 
 
@@ -22,5 +23,6 @@ export default (
       <Route path="/photos/format-chooser" component={ PhotoLayoutChooserPage } />
       <Route path="/photos/viewer" component={ PhotoViewerPage } />
     </Route>
+    <Route path="/settings" component={SettingsPage} />
   </Route>
 );
