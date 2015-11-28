@@ -4,7 +4,9 @@ import { Route, IndexRoute } from 'react-router';
 import PhotoBooth from './components/layout/photo-booth';
 
 import {
+  App,
   HomePage,
+  PhotoStartPage,
   PhotoTakePage,
   PhotoLayoutChooserPage,
   PhotoViewerPage,
@@ -12,10 +14,13 @@ import {
 
 
 export default (
-  <Route path="/" component={ PhotoBooth }>
+  <Route path="/" component={ App }>
     <IndexRoute component={ HomePage } />
-    <Route path="/photos/take" component={ PhotoTakePage } />
-    <Route path="/photos/format-chooser" component={ PhotoLayoutChooserPage } />
-    <Route path="/photos/viewer" component={ PhotoViewerPage } />
+    <Route path="/photos" component={ PhotoBooth }>
+      <Route path="/photos/start" component={ PhotoStartPage } />
+      <Route path="/photos/take" component={ PhotoTakePage } />
+      <Route path="/photos/format-chooser" component={ PhotoLayoutChooserPage } />
+      <Route path="/photos/viewer" component={ PhotoViewerPage } />
+    </Route>
   </Route>
 );

@@ -1,30 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import { Link } from 'react-router';
 
-import Logo from '../components/layout/logo';
-import RoundedBox from '../components/layout/rounded-box';
-import Button from '../components/layout/button';
 
-import './home.scss';
+const Home = () => (
+  <div>
+    <Link to="/photos/start">Start photo booth</Link>
+  </div>
+);
 
-export default class Home extends Component {
-
-  static contextTypes = {
-    history: PropTypes.object.isRequired,
-  };
-
-  handleTapToStartClick () {
-    this.context.history.pushState(null, '/photos/take');
-  }
-
-  render () {
-    return (
-      <RoundedBox>
-        <Logo type="vertical" />
-        <Button
-          text="Tap to start"
-          onClick={ ::this.handleTapToStartClick }
-          className="button-tap-to-start" />
-      </RoundedBox>
-    );
-  }
-}
+export default Home;
