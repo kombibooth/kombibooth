@@ -55,7 +55,8 @@
     "webpack": "^1.12.6",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-dev-server": "^1.12.1",
-    "webpack-hot-middleware": "^2.5.0"
+    "webpack-hot-middleware": "^2.5.0",
+    "photon": "github:krolow/photon#font_path_var"
   },
   "dependencies": {
     "babel": "^5.8.29",

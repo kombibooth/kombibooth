@@ -1,0 +1,13 @@
+$font-folder-path: "~photon/fonts/";
+
+.desktop {
+  @import "~photon/sass/photon.scss";
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: $font-family-default;
+  font-size: $font-size-default;
+  line-height: $line-height-default;
+  color: $gray-color;
+  background-color: transparent;
+}
