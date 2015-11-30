@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import Logo from '../../components/layout/logo';
-import RoundedBox from '../../components/layout/rounded-box';
-import Button from '../../components/layout/button';
+import Logo from '../../components/layout/photo-booth/logo';
+import RoundedBox from '../../components/layout/photo-booth/rounded-box';
+import Button from '../../components/layout/photo-booth/button';
 
 import './start.scss';
 

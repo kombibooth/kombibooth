@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import PhotoBooth from '../../components/layout/photo-booth';
-import PhotoImageRounded from '../../components/photo/image/rounded';
+import PhotoImageRounded from '../../components/layout/photo-booth/image/rounded';
 
 class PhotoViwer extends Component {
   static propTypes = {

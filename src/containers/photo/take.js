@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Webcam from 'react-webcam';
 
 import PhotoBooth from '../../components/layout/photo-booth';
-import Logo from '../../components/layout/logo';
-import PhotoImageRounded from '../../components/photo/image/rounded';
-import CountDown from '../../components/photo/count-down';
+import Logo from '../../components/layout/photo-booth/logo';
+import PhotoImageRounded from '../../components/layout/photo-booth/image/rounded';
+import CountDown from '../../components/layout/photo-booth/count-down';
 
 import { photoCaptured, lastPhotoCaptured } from '../../actions/photo';
 
