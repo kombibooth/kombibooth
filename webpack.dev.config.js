@@ -2,8 +2,9 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-require('babel-core/polyfill');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+require('babel-core/polyfill');
 
 module.exports = {
   debug: true,
@@ -26,6 +27,7 @@ module.exports = {
       filename: 'index.html',
       template: 'src/template/index.html',
     }),
+    new ExtractTextPlugin('bundle.css', { allChunks: true }),
   ],
   resolve: {
     extensions: ['', '.js'],
@@ -39,14 +41,14 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
+        loader: ExtractTextPlugin.extract('style', 'css!sass'),
       },
       {
         test: /\.png$/,
         loader: 'url?mimetype=image/png',
       },
       {
-        test: /(\.woff(2)?|\.ttf|\.eot|\.svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file',
       },
     ],
