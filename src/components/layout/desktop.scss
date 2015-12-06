@@ -1,5 +1,15 @@
 $font-folder-path: "~photon/fonts/";
 
+@font-face {
+  font-family: "photon-entypo";
+  src: url(quote($font-folder-path + '/photon-entypo.eot')) format('eot');
+  src: url(quote($font-folder-path + '/photon-entypo.eot?#iefix')) format('eot'),
+    url(quote($font-folder-path + '/photon-entypo.woff')) format('woff'),
+    url(quote($font-folder-path + '/photon-entypo.ttf')) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .desktop {
   @import "~photon/sass/photon.scss";
   height: 100%;

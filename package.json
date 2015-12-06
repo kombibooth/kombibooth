@@ -30,10 +30,12 @@
     "eslint": "^1.9.0",
     "eslint-config-airbnb": "^0.1.0",
     "eslint-plugin-react": "^3.8.0",
+    "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.4",
     "history": "^1.13.1",
     "html-webpack-plugin": "^1.6.2",
     "node-sass": "^3.4.2",
+    "photon": "github:krolow/photon#font_path_var",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
@@ -55,8 +57,7 @@
     "webpack": "^1.12.6",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-dev-server": "^1.12.1",
-    "webpack-hot-middleware": "^2.5.0",
-    "photon": "github:krolow/photon#font_path_var"
+    "webpack-hot-middleware": "^2.5.0"
   },
   "dependencies": {
     "babel": "^5.8.29",
