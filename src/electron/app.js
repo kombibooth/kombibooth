@@ -26,8 +26,8 @@ app.on('activate-with-no-open-windows', () => {
 
 function createMainWindow () {
   const win = new BrowserWindow({
-    width: 1250,
-    height: 650,
+    width: 944,
+    height: 450,
   });
 
   win.loadUrl('http://localhost:8080/dist/index.html');

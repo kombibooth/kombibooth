@@ -6,7 +6,7 @@ const Home = () => (
   <div>
     <Link to="/photos/start">Start photo booth</Link>
     <br />
-    <Link to="/settings">Settings</Link>
+    <Link to="/settings/preferences">Settings</Link>
   </div>
 );
 

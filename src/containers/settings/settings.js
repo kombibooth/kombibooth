@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-import Desktop from '../../components/layout/desktop';
-import Window from '../../components/layout/desktop/window';
-import WindowContent from '../../components/layout/desktop/window-content';
-import NavGroup from '../../components/layout/desktop/nav-group';
-import PaneGroup from '../../components/layout/desktop/pane-group';
-import Pane from '../../components/layout/desktop/pane';
-import NavItem from '../../components/layout/desktop/nav-item';
+import {
+  Desktop,
+  Window,
+  WindowContent,
+  NavGroup,
+  PaneGroup,
+  PaddedMore,
+  Pane,
+  NavItem,
+} from '../../components/layout/desktop';
 
 export default class SettingsPage extends Component {
+
+  static propTypes = {
+    children: PropTypes.any.isRequired,
+  };
 
   render () {
     return (
@@ -22,6 +29,11 @@ export default class SettingsPage extends Component {
                     Layout
                   </NavItem>
                 </NavGroup>
+              </Pane>
+              <Pane>
+                <PaddedMore>
+                  { this.props.children }
+                </PaddedMore>
               </Pane>
             </PaneGroup>
           </WindowContent>

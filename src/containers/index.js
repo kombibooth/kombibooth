@@ -5,3 +5,4 @@ export { default as PhotoTakePage } from './photo/take';
 export { default as PhotoLayoutChooserPage } from './photo/layout-chooser';
 export { default as PhotoViewerPage } from './photo/viewer';
 export { default as SettingsPage } from './settings/settings';
+export { default as PreferencesPage } from './settings/preferences';
