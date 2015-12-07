@@ -20,4 +20,8 @@ $font-folder-path: "~photon/fonts/";
   line-height: $line-height-default;
   color: $gray-color;
   background-color: transparent;
+
+  label:hover, input:hover, button:hover, select:hover {
+    cursor: pointer;
+  }
 }
