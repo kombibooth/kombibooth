@@ -1,5 +1,6 @@
 export { default as Desktop } from './desktop';
 export { default as Button } from './button';
+export { default as HeaderToolbar } from './header-toolbar';
 export { default as FooterToolbar } from './footer-toolbar';
 export { default as FormGroup } from './form-group';
 export { default as Form } from './form';
