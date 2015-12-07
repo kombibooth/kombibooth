@@ -1,4 +1,5 @@
 export { default as Desktop } from './desktop';
+export { default as ButtonGroup } from './button-group';
 export { default as Button } from './button';
 export { default as HeaderToolbar } from './header-toolbar';
 export { default as FooterToolbar } from './footer-toolbar';
