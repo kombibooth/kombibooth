@@ -13,3 +13,4 @@ export { default as Pane } from './pane';
 export { default as ToolbarActions } from './toolbar-actions';
 export { default as WindowContent } from './window-content';
 export { default as Window } from './window';
+export { default as Icon } from './icon';
