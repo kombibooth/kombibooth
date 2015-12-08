@@ -28,26 +28,21 @@ function createMainWindow () {
   const win = new BrowserWindow({
     width: 944,
     height: 450,
+    maxWidth: 944,
+    maxHeight: 450,
+    autoHideMenuBar: true,
+    'auto-hide-menu-bar': true,
   });
 
   win.loadUrl('http://localhost:8080/dist/index.html');
+  win.setMenuBarVisibility(false);
   win.openDevTools();
 
   win.on('closed', onClosed);
-  win.on('enter-full-screen', onEnterFullScreen);
-  win.on('leave-full-screen', onLeaveFullScreen);
 
   return win;
 }
 
 function onClosed () {
   mainWindow = null;
-}
-
-function onEnterFullScreen () {
-  this.setMenuBarVisibility(false);
-}
-
-function onLeaveFullScreen () {
-  this.setMenuBarVisibility(true);
 }
