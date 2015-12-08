@@ -1,4 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
+import {
+  Header,
+  Footer,
+} from '../../components/layout/desktop';
 
 import {
   Desktop,
@@ -6,10 +12,9 @@ import {
   WindowContent,
   NavGroup,
   PaneGroup,
-  PaddedMore,
   Pane,
   NavItem,
-} from '../../components/layout/desktop';
+} from '../../components/photonkit';
 
 export default class SettingsPage extends Component {
 
@@ -17,10 +22,27 @@ export default class SettingsPage extends Component {
     children: PropTypes.any.isRequired,
   };
 
+  static contextTypes = {
+    history: PropTypes.object.isRequired,
+  };
+
+  handleBackClick () {
+    this.context.history.goBack();
+  }
+
+  handleForwardClick () {
+    this.context.history.goForward();
+  }
+
   render () {
     return (
       <Desktop>
         <Window>
+          <Header
+            title="Settings"
+            onBackClick={ ::this.handleBackClick }
+            onForwardClick={ ::this.handleForwardClick }
+            />
           <WindowContent>
             <PaneGroup>
               <Pane className="pane-sm" sidebar>
@@ -31,15 +53,16 @@ export default class SettingsPage extends Component {
                 </NavGroup>
               </Pane>
               <Pane>
-                <PaddedMore>
-                  { this.props.children }
-                </PaddedMore>
+                { this.props.children }
               </Pane>
             </PaneGroup>
           </WindowContent>
+          <Footer />
         </Window>
       </Desktop>
     );
   }
 
 }
+
+export default connect()(SettingsPage);
