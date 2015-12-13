@@ -1,7 +1,9 @@
 import app from 'app';
+import { globalShortcut } from 'electron';
 import BrowserWindow from 'browser-window';
 import crashReporter from 'crash-reporter';
 
+import * as shortcuts from './shortcuts';
 
 crashReporter.start();
 
@@ -9,6 +11,7 @@ let mainWindow = null;
 
 app.on('ready', () => {
   mainWindow = createMainWindow();
+  registerShortcuts(shortcuts, globalShortcut)({ window: mainWindow });
 });
 
 app.on('window-all-closed', () => {
@@ -41,6 +44,21 @@ function createMainWindow () {
   win.on('closed', onClosed);
 
   return win;
+}
+
+function registerShortcuts (shortcuts, globalShortcut) {
+  return (params) => {
+    Object.keys(shortcuts).forEach((shortcutFucn) => {
+      const shortcut = shortcuts[shortcutFucn].bind(shortcutFucn, params)();
+
+      if (!globalShortcut.isRegistered(shortcut.accelerator)) {
+        globalShortcut.register(
+          shortcut.accelerator,
+          shortcut.handler
+        );
+      }
+    });
+  };
 }
 
 function onClosed () {

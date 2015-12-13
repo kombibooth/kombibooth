@@ -13,7 +13,8 @@
     "func-names": 0,
     "no-use-before-define": 0,
     "space-before-function-paren": [2, "always"],
-    "id-length": [1, {"exceptions": ["i", "j", "e"]}]
+    "id-length": [1, {"exceptions": ["i", "j", "e"]}],
+    "no-shadow": 0
   },
   "plugins": [
     "react"
