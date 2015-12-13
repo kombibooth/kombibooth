@@ -34,7 +34,7 @@ function createMainWindow () {
     'auto-hide-menu-bar': true,
   });
 
-  win.loadUrl('http://localhost:8080/dist/index.html');
+  win.loadURL('http://localhost:8080/dist/index.html');
   win.setMenuBarVisibility(false);
   win.openDevTools();
 
