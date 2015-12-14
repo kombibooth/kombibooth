@@ -3,13 +3,15 @@ import { globalShortcut } from 'electron';
 import BrowserWindow from 'browser-window';
 import crashReporter from 'crash-reporter';
 
+import { ensureIsInstalled } from './services/install';
 import * as shortcuts from './shortcuts';
 
 crashReporter.start();
 
 let mainWindow = null;
 
-app.on('ready', () => {
+app.on('ready', async () => {
+  await ensureIsInstalled();
   mainWindow = createMainWindow();
   registerShortcuts(shortcuts, globalShortcut)({ window: mainWindow });
 });
