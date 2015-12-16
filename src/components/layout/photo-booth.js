@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import DevTools from '../dev-tools';
 
 import './photo-booth.scss';
 
@@ -24,7 +23,6 @@ export default class PhotoBooth extends Component {
     return (
       <div className="photo-booth">
         { this.props.children }
-        <DevTools />
       </div>
     );
   }
