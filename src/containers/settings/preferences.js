@@ -3,146 +3,64 @@ import { connect } from 'react-redux';
 
 import {
   PaddedMore,
-  Form,
-  FormGroup,
-  FooterToolbar,
-  ToolbarActions,
-  Button,
-  Checkbox,
 } from '../../components/photonkit';
+import PreferencesForm from '../../components/settings/preferences-form';
 
 import { fetchSettingsIfNeeded } from '../../actions/settings';
+import { openDirectoryDialog } from '../../actions/dialog';
 
 class PreferencesPage extends Component {
 
   static propTypes = {
     settings: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
-  }
-
-  constructor (props, context) {
-    super(props, context);
+    dialog: PropTypes.object,
   }
 
   componentDidMount () {
     this.props.dispatch(fetchSettingsIfNeeded());
   }
 
-  handleChange (event) {
-    const newState = {};
+  componentWillReceiveProps (nextProps) {
+    const { dialog } = nextProps;
 
-    let value = event.target.value;
-    if (event.target.type === 'number') {
-      value = parseInt(event.target.value, 10);
+    if (dialog.didInvalidate) {
+      this.refs.preferencesForm.changeDirectory(
+        dialog.target,
+        dialog.directory
+      );
     }
-
-    if (event.target.type === 'checkbox') {
-      value = !!event.target.checked;
-    }
-
-    newState[event.target.name] = value;
-    this.setState(newState);
   }
 
-  renderPhotosSave () {
-    const { preferences } = this.props.settings;
+  handleDirectoryExplorerClick (target) {
+    this.props.dispatch(openDirectoryDialog(target));
+  }
 
-    return (
-      <div>
-        <FormGroup>
-          <label htmlFor="directoryToSavePhotos">
-            Directory to save photos:
-          </label>
-          <input
-            id="directoryToSavePhotos"
-            name="preferences[directoryToSavePhotos]"
-            type="text"
-            value={preferences.directoryToSavePhotos}
-            className="form-control"
-             />
-        </FormGroup>
-        <FormGroup>
-          <label htmlFor="directoryToSavePhotos">
-            Directory to save photos:
-          </label>
-          <input
-            id="directoryToSavePhotos"
-            name="preferences[folderToSavePhotos]"
-            type="text"
-            value={preferences.folderToSavePhotos}
-            className="form-control"
-             />
-          <Button icon="folder" onClick={ ::this.handleOpenDirectoryExplore } />
-        </FormGroup>
-      </div>
-    );
+  handleCancel () {
+
+  }
+
+  handleSave (preferences) {
+
   }
 
   render () {
     const { settings } = this.props;
-    const { preferences } = settings;
+    const { preferences } = settings.settings;
 
     if (settings.isFetching || !preferences) {
       return (<div></div>);
     }
 
     return (
-      <Form>
-        <PaddedMore>
-          <FormGroup>
-            <label htmlFor="numberOfPhotos">
-              Number of photos:
-            </label>
-            <input
-              id="numberOfPhotos"
-              name="preferences[numberOfPhotos]"
-              type="number"
-              min="1"
-              max="10"
-              className="form-control"
-              value={preferences.numberOfPhotos}
-               />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="countDownTime">
-              Count down time (in seconds):
-            </label>
-            <input
-              id="countDownTime"
-              name="preferences[countDownTime]"
-              type="number"
-              min="5"
-              max="10"
-              className="form-control"
-              value={ preferences.countDownTime }
-               />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="intervalBetweenPhotos">
-              Interval between photos (in seconds):
-            </label>
-            <input
-              id="intervalBetweenPhotos"
-              name="preferences[intervalBetweenPhotos]"
-              type="number"
-              min="1"
-              max="10"
-              className="form-control"
-              value={ preferences.intervalBetweenPhotos }
-               />
-          </FormGroup>
-          <Checkbox name="preferences[shouldSavePhotos]">
-            Photos should be saved.
-          </Checkbox>
-          { preferences.shouldSavePhotos && this.renderPhotosSave() }
-          <FooterToolbar style={{marginTop: '30px'}}>
-            <ToolbarActions>
-              <Button className="pull-left">Cancel</Button>
-              <Button type="primary" className="pull-right">Save</Button>
-            </ToolbarActions>
-          </FooterToolbar>
-        </PaddedMore>
-      </Form>
+      <PaddedMore>
+        <PreferencesForm
+          ref="preferencesForm"
+          preferences={ preferences }
+          onDirectoryExplorerClick={ ::this.handleDirectoryExplorerClick }
+          onSave={ ::this.handleSave }
+          onCancel={ ::this.handleCancel } />
+      </PaddedMore>
     );
   }
 
@@ -151,6 +69,7 @@ class PreferencesPage extends Component {
 function mapStateToProps (state) {
   return {
     settings: state.settings,
+    dialog: state.dialog,
   };
 }
 
