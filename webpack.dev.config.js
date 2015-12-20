@@ -8,6 +8,7 @@ require('babel-core/polyfill');
 
 module.exports = {
   debug: true,
+  target: 'electron',
   entry: [
     'babel-polyfill',
     'webpack/hot/dev-server?http://localhost:8080',

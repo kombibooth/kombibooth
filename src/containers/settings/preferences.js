@@ -1,65 +1,75 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import {
   PaddedMore,
-  Form,
-  FormGroup,
-  FooterToolbar,
-  ToolbarActions,
-  Button,
 } from '../../components/photonkit';
+import PreferencesForm from '../../components/settings/preferences-form';
 
-export default class Preferences extends Component {
+import { fetchSettingsIfNeeded, saveSettings } from '../../actions/settings';
+import { openDirectoryDialog } from '../../actions/dialog';
+
+class PreferencesPage extends Component {
+
+  static propTypes = {
+    settings: PropTypes.object,
+    dispatch: PropTypes.func.isRequired,
+    dialog: PropTypes.object,
+  }
+
+  componentDidMount () {
+    this.props.dispatch(fetchSettingsIfNeeded());
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { dialog } = nextProps;
+
+    if (dialog.didInvalidate) {
+      this.refs.preferencesForm.changeDirectory(
+        dialog.target,
+        dialog.directory
+      );
+    }
+  }
+
+  handleDirectoryExplorerClick (target) {
+    this.props.dispatch(openDirectoryDialog(target));
+  }
+
+  handleSave (preferences) {
+    const settings = {
+      ...this.props.settings.settings,
+      preferences,
+    };
+    this.props.dispatch(saveSettings(settings));
+  }
 
   render () {
+    const { settings } = this.props;
+    const { preferences } = settings.settings;
+
+    if (settings.isFetching || !preferences) {
+      return (<div></div>);
+    }
+
     return (
-      <Form>
-        <PaddedMore>
-          <FormGroup>
-            <label htmlFor="numberOfPhotos">
-              Number of photos:
-            </label>
-            <input
-              id="numberOfPhotos"
-              name="settings[numberOfPhotos]"
-              type="number"
-              min="1"
-              max="10"
-              className="form-control" />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="countDownTime">
-              Count down time (in seconds):
-            </label>
-            <input
-              id="countDownTime"
-              name="settings[countDownTime]"
-              type="number"
-              min="5"
-              max="10"
-              className="form-control" />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="intervalBetweenPhotos">
-              Interval between photos (in seconds):
-            </label>
-            <input
-              id="intervalBetweenPhotos"
-              name="settings[intervalBetweenPhotos]"
-              type="number"
-              min="1"
-              max="10"
-              className="form-control" />
-          </FormGroup>
-          <FooterToolbar style={{marginTop: '30px'}}>
-            <ToolbarActions>
-              <Button className="pull-left">Cancel</Button>
-              <Button type="primary" className="pull-right">Save</Button>
-            </ToolbarActions>
-          </FooterToolbar>
-        </PaddedMore>
-      </Form>
+      <PaddedMore>
+        <PreferencesForm
+          ref="preferencesForm"
+          preferences={ preferences }
+          onDirectoryExplorerClick={ ::this.handleDirectoryExplorerClick }
+          onSave={ ::this.handleSave } />
+      </PaddedMore>
     );
   }
 
 }
+
+function mapStateToProps (state) {
+  return {
+    settings: state.settings,
+    dialog: state.dialog,
+  };
+}
+
+export default connect(mapStateToProps)(PreferencesPage);
