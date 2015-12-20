@@ -33,8 +33,8 @@ function createMainWindow () {
   const win = new BrowserWindow({
     width: 944,
     height: 450,
-    maxWidth: 944,
-    maxHeight: 450,
+    minWidth: 944,
+    minHeight: 450,
     autoHideMenuBar: true,
     'auto-hide-menu-bar': true,
   });

@@ -3,12 +3,6 @@ import React, { Component, PropTypes } from 'react';
 
 import './photo-booth.scss';
 
-const style = {
-  body: {
-    backgroundColor: '#ED4145',
-  },
-};
-
 export default class PhotoBooth extends Component {
 
   static propTypes = {
@@ -16,7 +10,7 @@ export default class PhotoBooth extends Component {
   };
 
   componentDidMount () {
-    document.body.style.background = style.body.backgroundColor;
+    document.body.className += 'photo-booth-body';
   }
 
   render () {
