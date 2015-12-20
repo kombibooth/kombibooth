@@ -1,0 +1,12 @@
+@import '../_variables.scss';
+
+.button-tap-to-start {
+  margin-top: 60px;
+}
+
+@media (min-width: $medium-width) and (max-width: $large-width),
+(max-height: $medium-height) {
+  .button-tap-to-start {
+    margin-top: 20px;
+  }
+}

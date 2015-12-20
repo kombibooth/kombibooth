@@ -32,9 +32,9 @@ app.on('activate-with-no-open-windows', () => {
 function createMainWindow () {
   const win = new BrowserWindow({
     width: 944,
-    height: 450,
+    height: 720,
     minWidth: 944,
-    minHeight: 450,
+    minHeight: 720,
     autoHideMenuBar: true,
     'auto-hide-menu-bar': true,
   });

@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 .btn {
   font-family: 'Montserrat', sans-serif;
   border-radius: 10px;
@@ -14,5 +16,14 @@
 
   &:hover {
     background-color: #FF6656;
+  }
+}
+
+@media (min-width: $medium-width) and (max-width: $large-width),
+(max-height: $medium-height) {
+  .btn {
+    padding: 25px 45px;
+    font-size: 18px;
+    box-shadow: 0px 7px 0px 0px #CE3323;
   }
 }

@@ -1,0 +1,9 @@
+@import '../_variables.scss';
+
+@media (min-width: $medium-width) and (max-width: $large-width),
+(max-height: $medium-height) {
+  .logo-vertical {
+    width: 60%;
+    height: 60%;
+  }
+}
