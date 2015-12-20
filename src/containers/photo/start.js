@@ -2,9 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import Logo from '../../components/layout/photo-booth/logo';
 import RoundedBox from '../../components/layout/photo-booth/rounded-box';
-import Button from '../../components/layout/photo-booth/button';
-
-import './start.scss';
+import ButtonTapToStart from '../../components/layout/photo-booth/button-tap-to-start';
 
 export default class Start extends Component {
 
@@ -20,10 +18,7 @@ export default class Start extends Component {
     return (
       <RoundedBox>
         <Logo type="vertical" />
-        <Button
-          text="Tap to start"
-          onClick={ ::this.handleTapToStartClick }
-          className="button-tap-to-start" />
+        <ButtonTapToStart onTapToStartClick={ ::this.handleTapToStartClick } />
       </RoundedBox>
     );
   }

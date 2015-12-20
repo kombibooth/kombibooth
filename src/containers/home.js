@@ -21,6 +21,12 @@ class HomePage extends Component {
     history: PropTypes.object.isRequired,
   }
 
+  handleStartPhotoBooth (e) {
+    e.preventDefault();
+    document.querySelector('body').webkitRequestFullscreen();
+    this.context.history.pushState(null, '/photos/start');
+  }
+
   handleBackClick () {
     this.context.history.goBack();
   }
@@ -39,10 +45,10 @@ class HomePage extends Component {
             onForwardClick={ ::this.handleForwardClick } />
           <WindowContent>
             <Card>
-              <Link to="/photos/start">
+              <a href="#" onClick={ ::this.handleStartPhotoBooth }>
                 <Icon name="camera" />
                 <p>Start photo booth</p>
-              </Link>
+              </a>
             </Card>
             <Card>
               <Link to="/settings/preferences">
