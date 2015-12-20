@@ -2,6 +2,9 @@ import {
   FETCH_SETTINGS_SUCCESS,
   FETCH_SETTINGS_REQUEST,
   FETCH_SETTINGS_FAILURE,
+  SAVE_SETTINGS_SUCCESS,
+  SAVE_SETTINGS_REQUEST,
+  SAVE_SETTINGS_FAILURE,
 } from '../actions/settings';
 
 const INITIAL_STATE = {
@@ -11,11 +14,12 @@ const INITIAL_STATE = {
   error: null,
 };
 
-export default function photo (state = INITIAL_STATE, action) {
+export default function settings (state = INITIAL_STATE, action) {
   switch (action.type) {
   case FETCH_SETTINGS_SUCCESS:
     return {
       ...state,
+      isSaving: false,
       isFetching: false,
       didInvalidate: true,
       settings: action.settings,
@@ -24,6 +28,7 @@ export default function photo (state = INITIAL_STATE, action) {
   case FETCH_SETTINGS_REQUEST:
     return {
       ...state,
+      isSaving: false,
       isFetching: true,
       didInvalidate: false,
       error: null,
@@ -31,7 +36,33 @@ export default function photo (state = INITIAL_STATE, action) {
   case FETCH_SETTINGS_FAILURE:
     return {
       ...state,
+      isSaving: false,
       isFetching: false,
+      didInvalidate: false,
+      error: action.error,
+    };
+  case SAVE_SETTINGS_REQUEST:
+    return {
+      ...state,
+      isFetching: false,
+      isSaving: true,
+      didInvalidate: false,
+      error: null,
+    };
+  case SAVE_SETTINGS_SUCCESS:
+    return {
+      ...state,
+      settings: action.settings,
+      isFetching: false,
+      isSaving: false,
+      didInvalidate: true,
+      error: null,
+    };
+  case SAVE_SETTINGS_FAILURE:
+    return {
+      ...state,
+      isFetching: false,
+      isSaving: false,
       didInvalidate: false,
       error: action.error,
     };

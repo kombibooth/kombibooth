@@ -6,7 +6,7 @@ import {
 } from '../../components/photonkit';
 import PreferencesForm from '../../components/settings/preferences-form';
 
-import { fetchSettingsIfNeeded } from '../../actions/settings';
+import { fetchSettingsIfNeeded, saveSettings } from '../../actions/settings';
 import { openDirectoryDialog } from '../../actions/dialog';
 
 class PreferencesPage extends Component {
@@ -36,11 +36,12 @@ class PreferencesPage extends Component {
     this.props.dispatch(openDirectoryDialog(target));
   }
 
-  handleCancel () {
-
-  }
-
-  handleSave () {
+  handleSave (preferences) {
+    const settings = {
+      ...this.props.settings.settings,
+      preferences,
+    };
+    this.props.dispatch(saveSettings(settings));
   }
 
   render () {
@@ -57,8 +58,7 @@ class PreferencesPage extends Component {
           ref="preferencesForm"
           preferences={ preferences }
           onDirectoryExplorerClick={ ::this.handleDirectoryExplorerClick }
-          onSave={ ::this.handleSave }
-          onCancel={ ::this.handleCancel } />
+          onSave={ ::this.handleSave } />
       </PaddedMore>
     );
   }

@@ -131,7 +131,12 @@ export default class PreferencesForm extends Component {
             value={ this.state.intervalBetweenPhotos }
             defaultValue={ this.state.intervalBetweenPhotos } />
         </FormGroup>
-        <Checkbox onChange={ ::this.handleChange } name="shouldSavePhotos">
+        <Checkbox
+          name="shouldSavePhotos"
+          onChange={ ::this.handleChange }
+          checked={ this.state.shouldSavePhotos }
+          defaultChecked={ this.state.shouldSavePhotos }
+        >
           Photos should be saved.
         </Checkbox>
         { this.state.shouldSavePhotos && this.renderPhotosSave() }

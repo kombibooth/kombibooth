@@ -1,8 +1,12 @@
-import { settings as remoteSettings } from '../remote';
+import * as remote from '../remote';
 
 export const FETCH_SETTINGS_REQUEST = 'FETCH_SETTINGS_REQUEST';
 export const FETCH_SETTINGS_SUCCESS = 'FETCH_SETTINGS_SUCCESS';
 export const FETCH_SETTINGS_FAILURE = 'FETCH_SETTINGS_FAILURE';
+export const SAVE_SETTINGS_REQUEST = 'SAVE_SETTINGS_REQUEST';
+export const SAVE_SETTINGS_SUCCESS = 'SAVE_SETTINGS_SUCCESS';
+export const SAVE_SETTINGS_FAILURE = 'SAVE_SETTINGS_FAILURE';
+
 
 export function fetchSettingsIfNeeded () {
   return (dispatch, getState) => {
@@ -33,7 +37,7 @@ function fetchSettings () {
     dispatch({ type: FETCH_SETTINGS_REQUEST });
 
     try {
-      const settings = await remoteSettings.load();
+      const settings = await remote.settings.load();
       dispatch({ type: FETCH_SETTINGS_SUCCESS, settings });
     } catch (error) {
       dispatch({ type: FETCH_SETTINGS_FAILURE, error});
@@ -41,6 +45,15 @@ function fetchSettings () {
   };
 }
 
-export function saveSettings () {
+export function saveSettings (settingsToSave) {
+  return async (dispatch) => {
+    dispatch({ type: SAVE_SETTINGS_REQUEST });
 
+    try {
+      const settings = await remote.settings.save(settingsToSave);
+      dispatch({ type: SAVE_SETTINGS_SUCCESS, settings });
+    } catch (error) {
+      dispatch({ type: SAVE_SETTINGS_FAILURE, error});
+    }
+  };
 }
