@@ -40,8 +40,7 @@ class PreferencesPage extends Component {
 
   }
 
-  handleSave (preferences) {
-
+  handleSave () {
   }
 
   render () {

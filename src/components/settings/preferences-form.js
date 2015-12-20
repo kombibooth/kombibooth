@@ -14,7 +14,6 @@ export default class PreferencesForm extends Component {
     preferences: PropTypes.object.isRequired,
     onSave: PropTypes.func.isRequired,
     onDirectoryExplorerClick: PropTypes.func.isRequired,
-    onCancel: PropTypes.func,
   }
 
   constructor (props, context) {
@@ -23,6 +22,11 @@ export default class PreferencesForm extends Component {
     this.state = {
       ...props.preferences,
     };
+  }
+
+  handleCancel (event) {
+    event.preventDefault();
+    this.setState(this.props.preferences);
   }
 
   handleSave (event) {
@@ -52,7 +56,7 @@ export default class PreferencesForm extends Component {
   }
 
   changeDirectory (target, value) {
-    this.refs[target].value = value;
+    this.state[target] = value;
   }
 
   renderPhotosSave () {
@@ -68,9 +72,9 @@ export default class PreferencesForm extends Component {
             ref="directoryToSavePhotos"
             type="text"
             onChange={ ::this.handleChange }
+            value={this.state.directoryToSavePhotos}
             defaultValue={this.state.directoryToSavePhotos}
-            className="form-control"
-             />
+            className="form-control" />
             <Button
               icon="folder"
               onClick={ (e) => this.handleDirectoryExplorerClick('directoryToSavePhotos', e) } />
@@ -94,8 +98,8 @@ export default class PreferencesForm extends Component {
             max="10"
             className="form-control"
             onChange={ ::this.handleChange }
-            defaultValue={ this.state.numberOfPhotos }
-             />
+            value={ this.state.numberOfPhotos }
+            defaultValue={ this.state.numberOfPhotos } />
         </FormGroup>
         <FormGroup>
           <label htmlFor="countDownTime">
@@ -109,8 +113,8 @@ export default class PreferencesForm extends Component {
             max="10"
             className="form-control"
             onChange={ ::this.handleChange }
-            defaultValue={ this.state.countDownTime }
-             />
+            value={ this.state.countDownTime }
+            defaultValue={ this.state.countDownTime } />
         </FormGroup>
         <FormGroup>
           <label htmlFor="intervalBetweenPhotos">
@@ -124,8 +128,8 @@ export default class PreferencesForm extends Component {
             max="10"
             className="form-control"
             onChange={ ::this.handleChange }
-            defaultValue={ this.state.intervalBetweenPhotos }
-             />
+            value={ this.state.intervalBetweenPhotos }
+            defaultValue={ this.state.intervalBetweenPhotos } />
         </FormGroup>
         <Checkbox onChange={ ::this.handleChange } name="shouldSavePhotos">
           Photos should be saved.
@@ -133,7 +137,7 @@ export default class PreferencesForm extends Component {
         { this.state.shouldSavePhotos && this.renderPhotosSave() }
         <FooterToolbar style={{marginTop: '30px'}}>
           <ToolbarActions>
-            <Button className="pull-left">Cancel</Button>
+            <Button className="pull-left" onClick={ ::this.handleCancel }>Cancel</Button>
             <Button type="primary" className="pull-right">Save</Button>
           </ToolbarActions>
         </FooterToolbar>
