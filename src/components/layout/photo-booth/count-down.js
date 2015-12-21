@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import './count-down.scss';
+
 export default class CountDown extends Component {
   static propTypes = {
     seconds: PropTypes.number.isRequired,
@@ -62,9 +64,16 @@ export default class CountDown extends Component {
   }
 
   render () {
+    if (this.state.hide) {
+      return (<div />);
+    }
+
     return (
       <div className="countdown">
-        { !this.state.hide && this.state.seconds }
+        <div className="countdown-circle-timer">
+          { this.state.seconds }
+          <div className="countdown-circle-timer-pie"></div>
+        </div>
       </div>
     );
   }
