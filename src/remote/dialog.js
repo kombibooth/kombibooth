@@ -1,4 +1,5 @@
-const dialog = require('remote').require('dialog');
+const electron = require('electron');
+const dialog = electron.remote.require('dialog');
 
 export function openDirectoryDialog () {
   return new Promise((resolve, reject) => {

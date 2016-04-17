@@ -1,7 +1,8 @@
-const fs = require('remote').require('fs');
-const path = require('remote').require('path');
+const electron = require('electron');
+const fs = electron.remote.require('fs');
+const path = electron.remote.require('path');
 const { sep } = path;
-const osHomedir = require('remote').require('os-homedir');
+const osHomedir = electron.remote.require('os-homedir');
 
 export const SETTINGS_FILE = `${osHomedir()}${sep}.kombibooth.json`;
 export const DEFAULT_SETTINGS = {
